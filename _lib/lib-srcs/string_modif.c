@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 14:11:06 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/08/02 14:40:45 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/08/03 10:12:07 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,15 @@ char	*_strjoin(char const *s1, char const *s2)
 		ret[len1 + i] = s2[i];
 	ret[len1 + len2] = 0;
 	return (ret);
+}
+
+void	_bzero(void *addr, size_t n)
+{
+	size_t			i;
+	unsigned char	*ptr;
+
+	i = 0;
+	ptr = addr;
+	while (ptr && i < n)
+		ptr[i++] = 0;
 }
