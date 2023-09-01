@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:29:37 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/01 14:38:25 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:25:22 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdint.h>
 # include <limits.h>
+# include <stdarg.h>
 
 /* ------------------------- string ------------------------- */
 int		_strlen(const char *str);
@@ -32,6 +33,7 @@ void	*_calloc(size_t nmemb, size_t size);
 char	*_strdup(char *str);
 void	*_ftab(char **tab);
 char	**_tdpush(char **tab, char *to_add);
+void	m_free(int n, ...);
 
 /* ------------------------- put-in ------------------------- */
 void	_putchar(char c, int fd);

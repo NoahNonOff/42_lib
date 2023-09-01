@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:32:19 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/08/02 15:48:46 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/01 22:24:22 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,4 +85,15 @@ char	**_tdpush(char **tab, char *to_add)
 	if (tab)
 		free(tab);
 	return (ret);
+}
+
+void	m_free(int n, ...)
+{
+	va_list	ptr;
+	va_start(ptr, n);
+
+	for (int i = 0; i < n; i++)
+		free(va_arg(ptr, void *));
+
+	va_end(ptr);
 }
