@@ -5,51 +5,36 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/02 15:02:44 by nbeaufil          #+#    #+#              #
-#    Updated: 2023/08/03 11:32:15 by nbeaufil         ###   ########.fr        #
+#    Created: 2023/09/01 14:21:46 by nbeaufil          #+#    #+#              #
+#    Updated: 2023/09/01 15:37:31 by nbeaufil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS1	=	server.c
+SRC =	webServer.c
 
-NAME1	=	server
-OBJS1	=	${SRCS1:.c=.o}
+OBJ = $(SRC:.c=.o)
+CC = gcc
+RM = rm -f
+CLAGS = -Wall -Wextra -Werror
+LIBS = ./_lib/libC-utils.a -lpthread
 
-SRCS2	=	client.c
+NAME = webServer
 
-NAME2	=	client
-OBJS2	=	${SRCS2:.c=.o}
+all: $(NAME)
 
-CC		=	gcc
-FLAGS	=	-Wall -Wextra -Werror
-LIBS	=	./_lib/libC-utils.a
-INCLUDE	=	-I .
-DEBUG	=
-
-.c.o	:
-	${CC} ${FLAGS} ${INCLUDE} ${DEBUG} -c $< -o ${<:.c=.o}
-
-all	:	${NAME1} ${NAME2}
-
-$(NAME1)	:	${OBJS1}
+$(NAME): $(OBJ)
 	make all -C _lib
-	${CC} ${FLAGS} ${OBJS1} ${LIBS} ${DEBUG} -o ${NAME1}
+	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
 
-$(NAME2)	:	${OBJS2}
-	make all -C _lib
-	${CC} ${FLAGS} ${OBJS2} ${LIBS} ${DEBUG} -o ${NAME2}
-
-clean	:
+clean:
 	make clean -C _lib
-	rm -f ${OBJS1}
-	rm -f ${OBJS2}
+	$(RM) $(OBJ)
 
-fclean	:	clean
+fclean: clean
 	make fclean -C _lib
-	rm -f ${NAME1}
-	rm -f ${NAME2}
+	$(RM) $(NAME)
 
-re	:	fclean all
+re: fclean $(NAME)
 
 .PHONY: all clean fclean re
 
