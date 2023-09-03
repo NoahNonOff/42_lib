@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:29:37 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/01 22:25:22 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/03 18:13:55 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		_compn(const char *s1, const char *s2, int n);
 char	**_split(char const *s, char c);
 char	*_strjoin(char const *s1, char const *s2);
 void	_bzero(void *addr, size_t n);
+void	_strncpy(char *dest, char const *src, int sz);
 
 /* ----------------------- allocation ----------------------- */
 void	*_calloc(size_t nmemb, size_t size);

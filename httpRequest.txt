@@ -1,0 +1,30 @@
+request example:
+
+GET / HTTP/1.1
+Host: 127.0.0.1:6969
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/117.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate, br
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: none
+Sec-Fetch-User: ?1
+
+	------------------------
+
+->	GET <path> HTTP/1.1
+->	Host: <ip/website>
+->	Accept: <MIME_type>/<MIME_subtype>
+->	Accept-Language: <language>
+
+	------------------------
+
++[Multipurpose Internet Mail Extensions (type MIME)]
+->:"https://developer.mozilla.org/fr/docs/Web/HTTP/Basics_of_HTTP/MIME_types"
++[;q= (facteur de pondération q)]
+-> A weight is normalized to a real number in the range 0 through 1, where 0 is the minimum and 1 the maximum value. If a parameter has a quality value of 0, then content with this parameter is `not acceptable' for the client. HTTP/1.1
+
+"https://github.com/JeffreytheCoder/Simple-HTTP-Server/tree/master"

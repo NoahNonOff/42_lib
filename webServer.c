@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:40:35 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/02 00:15:50 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/03 18:38:12 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	server_fd = 0;
 	AF_INET: use IPv4 (vs IPv6)
 	SOCK_STREAM: use TCP (vs UDP)
 	INADDR_ANY: the server accepts connections from any network interface
+	SO_REUSEADDR: the server bind itself even if the port is already in use
 */
 
 void	initiateServer(int *server_fd, struct sockaddr_in *server_addr) {
@@ -30,7 +31,12 @@ void	initiateServer(int *server_fd, struct sockaddr_in *server_addr) {
 		exit(1);
 	}
 
-	// config socket
+	// get and set option on socket
+	if (setsockopt(*server_fd, SOL_SOCKET, SO_REUSEADDR, &(int){1}, sizeof(int)) < 0) {
+    	perror("error: [Socket] setsockopt(SO_REUSEADDR) failed");
+	}
+
+	// config the socket
 	_bzero(server_addr, sizeof(*server_addr));
 	server_addr->sin_family = AF_INET;
 	server_addr->sin_addr.s_addr = INADDR_ANY;
@@ -49,10 +55,14 @@ void	initiateServer(int *server_fd, struct sockaddr_in *server_addr) {
 	}
 }
 
-/* ------------------------------ urlDecoder -------------------------------- */
+/* ----------------------------- build_response ----------------------------- */
 
-char	*urlDecoder(const char *urlEncoded) {
+char	*build_response(void) {
 
+	char	*response = _calloc(sizeof(char), 200);
+
+	_strncpy(response, "HTTP/1.1 404 Not Found\r\nContent-Type: text/plain\r\n\r\n404 Not Found", 200);
+	return response;
 }
 
 /* ----------------------------- handle_client ------------------------------ */
@@ -66,25 +76,12 @@ void	*handle_client(void *data) {
 	ssize_t	bytes_received = recv(client_fd, buffer, BUFFER_SIZE, 0);
 	if (bytes_received > 0) {
 
-		// check if request is GET
-		regex_t		regex;
-		regmatch_t	matches[2];
-		regcomp(&regex, "^GET /([^ ]*) HTTP/1", REG_EXTENDED);
+		buffer[bytes_received] = 0;
+		// _putstr(buffer, 1);
+		char	*response = build_response();
 
-		if (!regexec(&regex, buffer, 2, matches, 0)) {
-			// extract filename from request + decode URL
-			// rm_so -> beginning of the substring
-			// rm_eo -> end of the substring
-			buffer[matches[1].rm_eo] = 0;
-			const char	*urlEncoded = buffer + matches[1].rm_so;
-
-			// char	*filename = urlDecoder(urlEncoded);
-			printf("urlEncoded: %s[%d:%d]\n", urlEncoded, matches[1].rm_so, matches[1].rm_eo);
-
-			// get file extension
-			// char	fileExt[32];
-			// get_file_ext(fileExt, filename);
-		}
+		send(client_fd, response, _strlen(response), 0);
+		free(response);
 	}
 
 	close(client_fd);
@@ -131,9 +128,9 @@ int	main(void)
 	struct sockaddr_in server_addr;
 
 	initiateServer(&server_fd, &server_addr);
-	_putstr("Server listening on port ", 1);
+	_putstr("Server listening on port [", 1);
 	_putnbr(PORT, 1);
-	_putchar('\n', 1);
+	_putstr("]\n", 1);
 
 	signal(SIGTERM, &endProg);
 

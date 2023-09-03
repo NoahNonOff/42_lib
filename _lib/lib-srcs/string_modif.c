@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 14:11:06 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/08/03 10:12:07 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/03 18:14:10 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,10 @@ void	_bzero(void *addr, size_t n)
 	ptr = addr;
 	while (ptr && i < n)
 		ptr[i++] = 0;
+}
+
+void	_strncpy(char *dest, char const *src, int sz)
+{
+	for (int i = 0; i < sz && src[i]; i++)
+		dest[i] = src[i];
 }
