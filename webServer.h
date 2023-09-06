@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:23:12 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/03 18:38:13 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:55:12 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@
 /* --------------- handleRequest -------------- */
 
 const char	*getFileExt(char const *fileName);
+char		*getFromPattern(char const *pattern, char const *str);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/01 14:21:46 by nbeaufil          #+#    #+#              #
-#    Updated: 2023/09/03 18:38:15 by nbeaufil         ###   ########.fr        #
+#    Updated: 2023/09/06 12:57:36 by nbeaufil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,10 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make all -C _lib
 	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
+
+test:
+	make all -C _lib
+	$(CC) -g3 handleRequest.c mainTest.c $(LIBS) -o $(NAME)
 
 clean:
 	make clean -C _lib
