@@ -28,3 +28,9 @@ Sec-Fetch-User: ?1
 -> A weight is normalized to a real number in the range 0 through 1, where 0 is the minimum and 1 the maximum value. If a parameter has a quality value of 0, then content with this parameter is `not acceptable' for the client. HTTP/1.1
 
 "https://github.com/JeffreytheCoder/Simple-HTTP-Server/tree/master"
+
+getfp:
+-> i (tout le debut de la chaine avant le pattern)
+-> begPat (debut du pattern avant ~)
+-> lenPat (taille du pattern (~))
+-> endPat (taille du pattern apres lenPat)

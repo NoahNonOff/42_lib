@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:40:35 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/03 18:38:12 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:11:55 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,19 @@ void	*handle_client(void *data) {
 
 		buffer[bytes_received] = 0;
 		// _putstr(buffer, 1);
-		char	*response = build_response();
+		char	*fileName = getfp("GET ~ HTTP/1.1", buffer);
+		if (!fileName) {
+			close(client_fd);
+			m_free(2, buffer, data);
+			return NULL;
+		}
+			
+		_putstr(fileName, 1);
+		_putchar('\n', 1);
+		// char	*response = build_response();
 
-		send(client_fd, response, _strlen(response), 0);
-		free(response);
+		// send(client_fd, response, _strlen(response), 0);
+		// free(response);
 	}
 
 	close(client_fd);
