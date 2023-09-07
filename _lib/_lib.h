@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:29:37 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/03 18:13:55 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:55:39 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <stdint.h>
 # include <limits.h>
 # include <stdarg.h>
+
+typedef enum { false, true }	BOOL;
+
+# ifndef bool
+#  define bool BOOL
+# endif
 
 /* ------------------------- string ------------------------- */
 int		_strlen(const char *str);
@@ -37,8 +43,14 @@ char	**_tdpush(char **tab, char *to_add);
 void	m_free(int n, ...);
 
 /* ------------------------- put-in ------------------------- */
-void	_putchar(char c, int fd);
-void	_putstr(char *str, int fd);
-void	_putnbr(int n, int fd);
+void		_putchar(char c, int fd);
+void		_putstr(char *str, int fd);
+void		_putnbr(int n, int fd);
+char		*addNchar(char const *str, char const *new_str, int n);
+char		*addtostr(char const *str, char const *new_str);
+const char	*_putinstr(char	const *str, ...);
+
+/* ----------------------- conversion ----------------------- */
+int		_atoi_base(char const *to_convert, char const *base);
 
 #endif

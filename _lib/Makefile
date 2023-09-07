@@ -6,14 +6,15 @@
 #    By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/02 15:02:44 by nbeaufil          #+#    #+#              #
-#    Updated: 2023/08/02 17:40:22 by nbeaufil         ###   ########.fr        #
+#    Updated: 2023/09/07 09:18:14 by nbeaufil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	=	lib-srcs/alloc.c		\
 			lib-srcs/put-in.c		\
 			lib-srcs/string_cmp.c	\
-			lib-srcs/string_modif.c
+			lib-srcs/string_modif.c	\
+			lib-srcs/conversion.c
 
 CC		=	gcc
 OBJS	=	${SRCS:.c=.o}

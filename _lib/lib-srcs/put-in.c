@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:36:27 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/08/02 17:38:32 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/07 15:57:38 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,65 @@ void	_putnbr(int n, int fd)
 	}
 	else
 		_putchar(n + '0', fd);
+}
+
+char	*addNchar(char const *str, char const *new_str, int n) {
+
+	long long		i;
+	char	*ret = _calloc(sizeof(char), _strlen(str) + n + 1);
+	if (!ret)
+		goto eAddStr;
+
+	for (i = 0; str && str[i]; i++)
+		ret[i] = str[i];
+	for (int j = 0; j < n; j++)
+		ret[i++] = new_str[j];
+
+	ret[i] = 0;
+
+eAddStr:
+	free((char *)str);
+	return ret;
+}
+
+char	*addtostr(char const *str, char const *new_str) {
+
+	int		i;
+	char	*ret = _calloc(sizeof(char), _strlen(str) + _strlen(new_str) + 1);
+	if (!ret)
+		goto eAddStr;
+
+	for (i = 0; str && str[i]; i++)
+		ret[i] = str[i];
+	for (int j = 0; new_str && new_str[j]; j++)
+		ret[i++] = new_str[j];
+
+	ret[i] = 0;
+
+eAddStr:
+	free((char *)str);
+	return ret;
+}
+
+const char	*_putinstr(char	const *str, ...) {
+
+	va_list	ptr;
+	va_start(ptr, str);
+
+	char	*ret = _calloc(1, 1);
+	char	c[2] = {0};
+
+	for (int i = 0; str && str[i]; i++) {
+		if (str[i] == '%') {
+			char const *sub_str = va_arg(ptr, char const *);
+			ret = addtostr(ret, sub_str);
+			i++;
+			continue ;
+		}
+		c[0] = str[i];
+		ret = addtostr(ret, c);
+	}
+
+	va_end(ptr);
+	return ret;
 }
