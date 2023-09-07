@@ -6,7 +6,7 @@
 #    By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/01 14:21:46 by nbeaufil          #+#    #+#              #
-#    Updated: 2023/09/07 14:43:24 by nbeaufil         ###   ########.fr        #
+#    Updated: 2023/09/07 16:25:18 by nbeaufil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,6 @@ $(NAME): $(OBJ)
 	make all -C _lib
 	$(CC) $(CFLAGS) $(OBJ) $(LIBS) -o $(NAME)
 
-test:
-	make all -C _lib
-	$(CC) -g3 handleRequest.c mainTest.c $(LIBS) -o test
-
 clean:
 	make clean -C _lib
 	$(RM) $(OBJ)
@@ -38,7 +34,6 @@ clean:
 fclean: clean
 	make fclean -C _lib
 	$(RM) $(NAME)
-	$(RM) test
 
 re: fclean $(NAME)
 

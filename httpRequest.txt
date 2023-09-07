@@ -34,3 +34,7 @@ getfp:
 -> begPat (debut du pattern avant ~)
 -> lenPat (taille du pattern (~))
 -> endPat (taille du pattern apres lenPat)
+
+	------------------------
+
+-> "127.0.0.1:6969/home.html"
