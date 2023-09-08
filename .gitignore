@@ -1,2 +1,1 @@
 git rm --cached httpRequest.txt
-git rm --cached .gitignore
