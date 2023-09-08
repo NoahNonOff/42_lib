@@ -6,12 +6,13 @@
 #    By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/01 14:21:46 by nbeaufil          #+#    #+#              #
-#    Updated: 2023/09/08 09:50:57 by nbeaufil         ###   ########.fr        #
+#    Updated: 2023/09/08 10:59:28 by nbeaufil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =	webServer.c		\
-		handleRequest.c
+		handleRequest.c	\
+		buildResponse.c
 
 OBJ = $(SRC:.c=.o)
 CC = gcc

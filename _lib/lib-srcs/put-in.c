@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 15:36:27 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/07 15:57:38 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:06:52 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,25 +47,6 @@ void	_putnbr(int n, int fd)
 		_putchar(n + '0', fd);
 }
 
-char	*addNchar(char const *str, char const *new_str, int n) {
-
-	long long		i;
-	char	*ret = _calloc(sizeof(char), _strlen(str) + n + 1);
-	if (!ret)
-		goto eAddStr;
-
-	for (i = 0; str && str[i]; i++)
-		ret[i] = str[i];
-	for (int j = 0; j < n; j++)
-		ret[i++] = new_str[j];
-
-	ret[i] = 0;
-
-eAddStr:
-	free((char *)str);
-	return ret;
-}
-
 char	*addtostr(char const *str, char const *new_str) {
 
 	int		i;
@@ -85,7 +66,7 @@ eAddStr:
 	return ret;
 }
 
-const char	*_putinstr(char	const *str, ...) {
+char	*_putinstr(char	const *str, ...) {
 
 	va_list	ptr;
 	va_start(ptr, str);

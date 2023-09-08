@@ -6,11 +6,16 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 11:19:24 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/03 18:10:51 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:30:55 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "_lib.h"
+
+int	_isWhiteSpace(const char c) {
+
+	return ((c >= 9 && c <= 13) || c == 32);
+}
 
 int	_strlen(const char *str)
 {
@@ -45,7 +50,7 @@ int	_compn(const char *s1, const char *s2, int n)
 	i = 0;
 	t1 = (unsigned char *)s1;
 	t2 = (unsigned char *)s2;
-	while ((t1[i] && t2[i]) && (t1[i] == t2[i]) && (n < 0 || i < n))
+	while ((t1[i] && t2[i]) && (t1[i] == t2[i]) && !(n < 0 || i < n))
 		i++;
 	return (t1[i] - t2[i]);
 }

@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:55:55 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/08 09:28:18 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/08 14:47:47 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,25 @@ static char	*extractFromStr(int begin, int end, char const *str) {
 	return ret;
 }
 
+char	*getBodyRequest(char *header, char const *file, int file_len) {
+
+	long long	i;
+	char		*ret = _calloc(sizeof(char), _strlen(header) + file_len + 1);
+	if (!ret)
+		goto eGetBodyRequst;
+
+	for (i = 0; header && header[i]; i++)
+		ret[i] = header[i];
+	for (int j = 0; j < file_len; j++)
+		ret[i++] = file[j];
+
+	ret[i] = 0;
+
+eGetBodyRequst:
+	free(header);
+	return ret;
+}
+
 const char	*getMIME(char const *fileExt) {
 
 	if (!_comp(fileExt, "html"))
@@ -61,12 +80,34 @@ const char	*getMIME(char const *fileExt) {
 		return "image/jpeg";
 	else if (!_comp(fileExt, "png"))
 		return "image/png";
+	else if (!_comp(fileExt, "ico"))
+		return "image/x-icon";
 	else if (!_comp(fileExt, "gif"))
 		return "image/gif";
 	else if (!_comp(fileExt, "webp"))
 		return "image/webp";
 
 	return "application/octet-stream";
+}
+
+R_HTTP	getREQUEST(char *request) {
+
+	R_HTTP	type = NONE;
+	int		len = 0;
+
+	if (!request)
+		return NONE;
+	while (request && request[len] && !_isWhiteSpace(request[len]))
+		len++;
+
+	if (!_compn(request, "GET", len))
+		type = GET;
+	else if (!_compn(request, "HEAD", len))
+		type = HEAD;
+	else if (!_compn(request, "POST", len))
+		type = POST;
+
+	return type;
 }
 
 // "GET /home.html HTTP/1.1"
@@ -145,7 +186,7 @@ char	*urlDecode(char const *encoded) {
 	return _strdup(decoded);
 }
 
-const char	*putPrefix(char const *str) {
+char	*putPrefix(char const *str) {
 
 	int			i;
 	char	*ret = _calloc(sizeof(char), _strlen(str) + _strlen(PREFIX) + 1);
