@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 13:55:55 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/07 15:40:36 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/08 09:28:18 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,8 @@ const char	*putPrefix(char const *str) {
 
 	int			i;
 	char	*ret = _calloc(sizeof(char), _strlen(str) + _strlen(PREFIX) + 1);
+	if (!ret)
+		goto eputPre;
 
 	for (i = 0; PREFIX[i]; i++)
 		ret[i] = PREFIX[i];
@@ -156,6 +158,7 @@ const char	*putPrefix(char const *str) {
 		ret[i++] = str[j];
 	ret[i] = 0;
 
+eputPre:
 	free((char *)str);
 	return ret;
 }

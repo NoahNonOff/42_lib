@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 14:23:12 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/07 15:25:37 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/08 09:16:48 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@
 
 /* ----------------- macros ------------------ */
 
-# define PORT 6969
+# ifndef PORT
+#  define PORT 6969
+# endif
+
 # define BUFFER_SIZE 200000
 # define PREFIX "./web"
 

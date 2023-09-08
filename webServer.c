@@ -6,7 +6,7 @@
 /*   By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 15:40:35 by nbeaufil          #+#    #+#             */
-/*   Updated: 2023/09/07 16:39:11 by nbeaufil         ###   ########.fr       */
+/*   Updated: 2023/09/08 09:32:05 by nbeaufil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ const char	*build_response(char const *fileName, char const *fileExt, int *respo
 		*response_len += file_stat.st_size;
 	}
 
+	free((char *)fileName);
 	close(file_fd);
 	return response;
 }
@@ -122,7 +123,7 @@ void	*handle_client(void *data) {
 		}
 
 		send(client_fd, response, response_len, 0);
-		//m_free(2, response, fileName);
+		free((char *)response);
 	}
 
 eHandleC:
@@ -135,6 +136,7 @@ eHandleC:
 
 void	acceptClient(void) {
 
+	printf("in acceptClient\n");
 	int					*client_fd;
 	struct sockaddr_in	client_addr;
 	socklen_t			client_addr_len = sizeof(client_addr);
@@ -160,7 +162,7 @@ void	acceptClient(void) {
 
 void	endProg(int signal) {
 
-	if (signal != SIGTERM)
+	if (signal != SIGTERM && signal != SIGINT)
 		return ;
 	close(server_fd);
 	exit(0);
@@ -176,6 +178,7 @@ int	main(void)
 	_putstr("]\n", 1);
 
 	signal(SIGTERM, &endProg);
+	signal(SIGINT, &endProg);
 
 	while (1)
 		acceptClient();
