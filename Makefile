@@ -6,7 +6,7 @@
 #    By: nbeaufil <nbeaufil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/01 14:21:46 by nbeaufil          #+#    #+#              #
-#    Updated: 2023/09/07 16:25:18 by nbeaufil         ###   ########.fr        #
+#    Updated: 2023/09/08 09:50:57 by nbeaufil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -g3
 LIBS = ./_lib/libC-utils.a -lpthread
 
-NAME = webServer
+NAME = webserver
 
 all: $(NAME)
 

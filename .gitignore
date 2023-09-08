@@ -1,1 +1,8 @@
-git rm --cached httpRequest.txt
+# exclude all object file
+*.o
+# exclude all static library
+*.a
+# exclude all .txt files
+*.txt
+# exclude webserver
+webserver

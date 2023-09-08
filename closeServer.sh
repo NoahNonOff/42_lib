@@ -1,6 +1,6 @@
 #!/bin/bash
 
-binName=webServer
+binName=webserver
 pid=`pidof $binName`
 
 if [ $? -eq 1 ]; then
