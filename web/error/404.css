@@ -1,0 +1,19 @@
+h1 {
+	margin-left: 10px;
+	font-family: 'Avenir', sans-serif; 
+	color: black;    
+}
+
+p {
+	margin-left: 10px;
+}
+
+body {
+	background-color:#d2d2d2;
+}
+
+img {
+	display: block;
+	width: 90%;
+	margin: auto;
+}
