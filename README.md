@@ -1,6 +1,7 @@
 # Server Web
 I coded a simple server web witch deal with GET and HEAD request to improve my C skills<br>
-I also used multi-threading to accept multiple clients
+I also used multi-threading to accept multiple clients<br><br>
+*(PS: The website is realy ugly because it wasn't the point of the project)*
 ### Use
 * `make` &nbsp;&nbsp; --> &nbsp;&nbsp;compile the server
 * `./webserver` &nbsp;&nbsp; --> &nbsp;&nbsp;launch the server
